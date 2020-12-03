@@ -3,11 +3,11 @@
   <title>七月のBlog</title>
   
   
-  <link href="https://myiszhb.gitee.io/atom.xml" rel="self"/>
+  <link href="https://blog.myiszhb.cn/atom.xml" rel="self"/>
   
-  <link href="https://myiszhb.gitee.io/"/>
-  <updated>2020-12-02T12:22:01.627Z</updated>
-  <id>https://myiszhb.gitee.io/</id>
+  <link href="https://blog.myiszhb.cn/"/>
+  <updated>2020-12-03T12:32:53.118Z</updated>
+  <id>https://blog.myiszhb.cn/</id>
   
   <author>
     <name>七月</name>
@@ -17,9 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>稀疏数组</title>
+    <link href="https://blog.myiszhb.cn/2020/12/03/a6455d41.html"/>
+    <id>https://blog.myiszhb.cn/2020/12/03/a6455d41.html</id>
+    <published>2020-12-03T12:29:50.000Z</published>
+    <updated>2020-12-03T12:32:53.118Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是稀疏数组？"><a href="#什么是稀疏数组？" class="headerlink" title="什么是稀疏数组？"></a>什么是稀疏数组？</h1><ol><li>当一个数组中大步幅元素为0，或者为同一个值的数组是，可以使用稀疏数组来保持该数组。</li><li>稀疏数组的处理方式<ul><li>记录数组一共有几行几列，有多少个不同值</li><li>把具有不同值的元素和行列及值记录在一个小规模的数组中，从而缩小程序的规模</li></ul></li></ol><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] array = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">11</span>][<span class="number">10</span>];</span><br><span class="line">array[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">array[<span class="number">3</span>][<span class="number">4</span>] = <span class="number">5</span>;</span><br><span class="line">System.err.println(<span class="string">&quot;输出棋盘:&quot;</span>);</span><br><span class="line">Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array[i].length; j++) &#123;</span><br><span class="line">System.out.print(array[i][j]+<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//获取有效数据</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array[i].length; j++) &#123;</span><br><span class="line"><span class="keyword">if</span>(array[i][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">count = ++count;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span>[][] num = <span class="keyword">new</span> <span class="keyword">int</span>[count+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line"><span class="comment">//获取总共有多少行</span></span><br><span class="line">num[<span class="number">0</span>][<span class="number">0</span>] = array.length;</span><br><span class="line"><span class="comment">//获取总共有多少列</span></span><br><span class="line">num[<span class="number">0</span>][<span class="number">1</span>] = array[<span class="number">0</span>].length;</span><br><span class="line"><span class="comment">//赋值有效数据</span></span><br><span class="line">num[<span class="number">0</span>][<span class="number">2</span>] = count;</span><br><span class="line"><span class="keyword">int</span> number = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//获取稀疏数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; array[i].length; j++) &#123;</span><br><span class="line"><span class="keyword">if</span>(array[i][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">num[number][<span class="number">0</span>] = i;</span><br><span class="line">num[number][<span class="number">1</span>] = j;</span><br><span class="line">num[number][<span class="number">2</span>] = array[i][j];</span><br><span class="line">number++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.err.println(<span class="string">&quot;转换后的结果:&quot;</span>);</span><br><span class="line">Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num[i].length; j++) &#123;</span><br><span class="line">System.out.print(num[i][j]+<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println();</span><br><span class="line">&#125;</span><br><span class="line">        <span class="comment">//取出稀疏数组的行列</span></span><br><span class="line"><span class="keyword">int</span>[][] nums = <span class="keyword">new</span> <span class="keyword">int</span>[num[<span class="number">0</span>][<span class="number">0</span>]][num[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">System.err.println(<span class="string">&quot;还原稀疏数组:&quot;</span>);</span><br><span class="line">Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">        <span class="comment">//渲染稀疏数组有效值从第一行开始渲染</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; num.length; i++) &#123;</span><br><span class="line">nums[num[i][<span class="number">0</span>]][num[i][<span class="number">1</span>]] = num[i][<span class="number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nums[i].length; j++) &#123;</span><br><span class="line">System.out.print(nums[i][j]+<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println();</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>结果：</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">输出棋盘:</span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">1</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">5</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line">转换后的结果:</span><br><span class="line">列  行  值</span><br><span class="line"><span class="number">11</span><span class="number">10</span><span class="number">2</span>   <span class="comment">//第一行表示一共有11行10列有效值为2个</span></span><br><span class="line"><span class="number">1</span><span class="number">2</span><span class="number">1</span>   <span class="comment">//第二行表示第一个值在第1行第2列值是1</span></span><br><span class="line"><span class="number">3</span><span class="number">4</span><span class="number">5</span>   <span class="comment">//第三行表示第二个值在第3行第4列值是5，以此类推</span></span><br><span class="line">还原稀疏数组:</span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">1</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">5</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br><span class="line"><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span><span class="number">0</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">稀疏数组</summary>
+    
+    
+    
+    <category term="Java" scheme="https://blog.myiszhb.cn/categories/Java/"/>
+    
+    <category term="se" scheme="https://blog.myiszhb.cn/categories/Java/se/"/>
+    
+    
+    <category term="基础" scheme="https://blog.myiszhb.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数组及多维数组</title>
-    <link href="https://myiszhb.gitee.io/2020/12/02/4cb979a2.html"/>
-    <id>https://myiszhb.gitee.io/2020/12/02/4cb979a2.html</id>
+    <link href="https://blog.myiszhb.cn/2020/12/02/4cb979a2.html"/>
+    <id>https://blog.myiszhb.cn/2020/12/02/4cb979a2.html</id>
     <published>2020-12-02T12:13:24.000Z</published>
     <updated>2020-12-02T12:22:01.627Z</updated>
     
@@ -30,19 +53,19 @@
     
     
     
-    <category term="Java" scheme="https://myiszhb.gitee.io/categories/Java/"/>
+    <category term="Java" scheme="https://blog.myiszhb.cn/categories/Java/"/>
     
-    <category term="se" scheme="https://myiszhb.gitee.io/categories/Java/se/"/>
+    <category term="se" scheme="https://blog.myiszhb.cn/categories/Java/se/"/>
     
     
-    <category term="基础" scheme="https://myiszhb.gitee.io/tags/%E5%9F%BA%E7%A1%80/"/>
+    <category term="基础" scheme="https://blog.myiszhb.cn/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>Java方法</title>
-    <link href="https://myiszhb.gitee.io/2020/12/01/7a37a823.html"/>
-    <id>https://myiszhb.gitee.io/2020/12/01/7a37a823.html</id>
+    <link href="https://blog.myiszhb.cn/2020/12/01/7a37a823.html"/>
+    <id>https://blog.myiszhb.cn/2020/12/01/7a37a823.html</id>
     <published>2020-12-01T12:12:08.000Z</published>
     <updated>2020-12-01T13:08:38.342Z</updated>
     
@@ -53,19 +76,19 @@
     
     
     
-    <category term="Java" scheme="https://myiszhb.gitee.io/categories/Java/"/>
+    <category term="Java" scheme="https://blog.myiszhb.cn/categories/Java/"/>
     
-    <category term="se" scheme="https://myiszhb.gitee.io/categories/Java/se/"/>
+    <category term="se" scheme="https://blog.myiszhb.cn/categories/Java/se/"/>
     
     
-    <category term="基础" scheme="https://myiszhb.gitee.io/tags/%E5%9F%BA%E7%A1%80/"/>
+    <category term="基础" scheme="https://blog.myiszhb.cn/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>什么是变量、常量、作用域、final关键字以及变量的命名规范</title>
-    <link href="https://myiszhb.gitee.io/2020/11/30/c278e9dc.html"/>
-    <id>https://myiszhb.gitee.io/2020/11/30/c278e9dc.html</id>
+    <link href="https://blog.myiszhb.cn/2020/11/30/c278e9dc.html"/>
+    <id>https://blog.myiszhb.cn/2020/11/30/c278e9dc.html</id>
     <published>2020-11-30T12:00:53.000Z</published>
     <updated>2020-12-02T12:12:26.701Z</updated>
     
@@ -76,19 +99,19 @@
     
     
     
-    <category term="Java" scheme="https://myiszhb.gitee.io/categories/Java/"/>
+    <category term="Java" scheme="https://blog.myiszhb.cn/categories/Java/"/>
     
-    <category term="se" scheme="https://myiszhb.gitee.io/categories/Java/se/"/>
+    <category term="se" scheme="https://blog.myiszhb.cn/categories/Java/se/"/>
     
     
-    <category term="基础" scheme="https://myiszhb.gitee.io/tags/%E5%9F%BA%E7%A1%80/"/>
+    <category term="基础" scheme="https://blog.myiszhb.cn/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>Java运算符</title>
-    <link href="https://myiszhb.gitee.io/2020/11/29/778179f.html"/>
-    <id>https://myiszhb.gitee.io/2020/11/29/778179f.html</id>
+    <link href="https://blog.myiszhb.cn/2020/11/29/778179f.html"/>
+    <id>https://blog.myiszhb.cn/2020/11/29/778179f.html</id>
     <published>2020-11-29T05:39:11.000Z</published>
     <updated>2020-12-01T13:08:42.736Z</updated>
     
@@ -99,19 +122,19 @@
     
     
     
-    <category term="Java" scheme="https://myiszhb.gitee.io/categories/Java/"/>
+    <category term="Java" scheme="https://blog.myiszhb.cn/categories/Java/"/>
     
-    <category term="se" scheme="https://myiszhb.gitee.io/categories/Java/se/"/>
+    <category term="se" scheme="https://blog.myiszhb.cn/categories/Java/se/"/>
     
     
-    <category term="基础" scheme="https://myiszhb.gitee.io/tags/%E5%9F%BA%E7%A1%80/"/>
+    <category term="基础" scheme="https://blog.myiszhb.cn/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>Java数据类型</title>
-    <link href="https://myiszhb.gitee.io/2020/11/28/3daa4bf4.html"/>
-    <id>https://myiszhb.gitee.io/2020/11/28/3daa4bf4.html</id>
+    <link href="https://blog.myiszhb.cn/2020/11/28/3daa4bf4.html"/>
+    <id>https://blog.myiszhb.cn/2020/11/28/3daa4bf4.html</id>
     <published>2020-11-28T11:25:53.000Z</published>
     <updated>2020-12-01T14:19:21.719Z</updated>
     
@@ -122,19 +145,19 @@
     
     
     
-    <category term="Java" scheme="https://myiszhb.gitee.io/categories/Java/"/>
+    <category term="Java" scheme="https://blog.myiszhb.cn/categories/Java/"/>
     
-    <category term="se" scheme="https://myiszhb.gitee.io/categories/Java/se/"/>
+    <category term="se" scheme="https://blog.myiszhb.cn/categories/Java/se/"/>
     
     
-    <category term="基础" scheme="https://myiszhb.gitee.io/tags/%E5%9F%BA%E7%A1%80/"/>
+    <category term="基础" scheme="https://blog.myiszhb.cn/tags/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>EMQX配置wss</title>
-    <link href="https://myiszhb.gitee.io/2020/11/27/a464dc8f.html"/>
-    <id>https://myiszhb.gitee.io/2020/11/27/a464dc8f.html</id>
+    <link href="https://blog.myiszhb.cn/2020/11/27/a464dc8f.html"/>
+    <id>https://blog.myiszhb.cn/2020/11/27/a464dc8f.html</id>
     <published>2020-11-27T12:07:43.000Z</published>
     <updated>2020-12-02T12:26:50.426Z</updated>
     
@@ -148,17 +171,17 @@
     
     
     
-    <category term="运维" scheme="https://myiszhb.gitee.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    <category term="运维" scheme="https://blog.myiszhb.cn/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-    <category term="emqx" scheme="https://myiszhb.gitee.io/tags/emqx/"/>
+    <category term="emqx" scheme="https://blog.myiszhb.cn/tags/emqx/"/>
     
   </entry>
   
   <entry>
     <title>certbot白嫖https证书</title>
-    <link href="https://myiszhb.gitee.io/2020/11/26/733eea1c.html"/>
-    <id>https://myiszhb.gitee.io/2020/11/26/733eea1c.html</id>
+    <link href="https://blog.myiszhb.cn/2020/11/26/733eea1c.html"/>
+    <id>https://blog.myiszhb.cn/2020/11/26/733eea1c.html</id>
     <published>2020-11-26T08:12:33.000Z</published>
     <updated>2020-11-28T04:18:36.031Z</updated>
     
@@ -172,12 +195,12 @@
     
     
     
-    <category term="运维" scheme="https://myiszhb.gitee.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    <category term="运维" scheme="https://blog.myiszhb.cn/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-    <category term="certbot" scheme="https://myiszhb.gitee.io/tags/certbot/"/>
+    <category term="certbot" scheme="https://blog.myiszhb.cn/tags/certbot/"/>
     
-    <category term="证书" scheme="https://myiszhb.gitee.io/tags/%E8%AF%81%E4%B9%A6/"/>
+    <category term="证书" scheme="https://blog.myiszhb.cn/tags/%E8%AF%81%E4%B9%A6/"/>
     
   </entry>
   
