@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.myiszhb.cn/link/index.html</loc>
+    
+    <lastmod>2020-12-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.myiszhb.cn/2020/11/30/c278e9dc.html</loc>
     
     <lastmod>2020-12-04</lastmod>
@@ -68,13 +75,6 @@
     <loc>https://blog.myiszhb.cn/2020/11/26/733eea1c.html</loc>
     
     <lastmod>2020-11-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.myiszhb.cn/link/index.html</loc>
-    
-    <lastmod>2020-11-15</lastmod>
     
   </url>
   
