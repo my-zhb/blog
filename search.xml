@@ -22,7 +22,9 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 面向对象 </tag>
+            
+            <tag> 面向过程 </tag>
             
         </tags>
       
@@ -49,7 +51,7 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 数组 </tag>
             
         </tags>
       
@@ -76,7 +78,7 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 数组 </tag>
             
         </tags>
       
@@ -103,7 +105,7 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 方法 </tag>
             
         </tags>
       
@@ -130,7 +132,9 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 变量 </tag>
+            
+            <tag> 常量 </tag>
             
         </tags>
       
@@ -157,7 +161,7 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 运算符 </tag>
             
         </tags>
       
@@ -184,7 +188,7 @@
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> 数据类型 </tag>
             
         </tags>
       
