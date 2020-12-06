@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>static关键字</title>
+      <link href="2020/12/06/ce244871.html"/>
+      <url>2020/12/06/ce244871.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;匿名代码块&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态代码块&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] ages)</span></span>&#123;</span><br><span class="line">        Test test = <span class="keyword">new</span> Test();</span><br><span class="line">        System.out.println(<span class="string">&quot;===============&quot;</span>);</span><br><span class="line">        Test test = <span class="keyword">new</span> Test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>输出结果:</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">静态代码块</span><br><span class="line">匿名代码块</span><br><span class="line">构造方法</span><br><span class="line">===============</span><br><span class="line">匿名代码块</span><br><span class="line">构造方法</span><br></pre></td></tr></table></figure><p>总结：</p><ol><li>第一次执行先执行静态代码块 在执行匿名代码块 最后执行构造方法</li><li>静态方法只执行一次</li></ol><h1 id="静态导入包"><a href="#静态导入包" class="headerlink" title="静态导入包"></a>静态导入包</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//静态导入包</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.<span class="keyword">long</span>.Math.random;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.<span class="keyword">long</span>.Math.PI;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] ages)</span></span>&#123;</span><br><span class="line">        System.out.println(random());</span><br><span class="line">        System.out.println(PI);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="静态属性及方法"><a href="#静态属性及方法" class="headerlink" title="静态属性及方法"></a>静态属性及方法</h1><p>静态的属性和方法可以直接通过类名调用</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> se </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> static </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>面向对象的3大特征</title>
       <link href="2020/12/05/7867351e.html"/>
       <url>2020/12/05/7867351e.html</url>
