@@ -4,6 +4,62 @@
   
     
     <entry>
+      <title>接口</title>
+      <link href="2020/12/08/5951da65.html"/>
+      <url>2020/12/08/5951da65.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="什么是接口"><a href="#什么是接口" class="headerlink" title="什么是接口"></a>什么是接口</h1><ul><li>普通类：只有具体实现</li><li>抽象类：具体实现和规范(抽象方法)都有！</li><li>接口：只有规范！</li></ul><ol><li>接口就是规范，定义的是一组规则，体现了现实世界中”如果你是…则必须能…”的思想。如果你是天使则必须能飞。</li><li><code>接口的本质是契约</code>，就像我们人类的法律一样。制定好后大家都遵守。</li></ol><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义接口的关键字 interface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//接口里面的方法都是抽象的 public abstract</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//类 可以实现接口 通过关键字 implements</span></span><br><span class="line"><span class="comment">//实现接口就不必重写接口里面的方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="==总结=="></a>==<strong>总结</strong>==</h1><ol><li>接口就是一种约束(<code>接口里面只能出现抽象方法和常量</code>)</li><li>接口定义了一些方法，可以让不同的人实现</li><li>接口里面定义的方法都是 public abstract (<code>可以直接忽略不写</code>)</li><li>接口里面定义的常量都是 public static final (<code>可以直接忽略不写</code>)</li><li>接口不能被实例化，接口中没有构造方法。</li><li>implements可以实现多个接口</li><li>类实现了接口就必须重写接口里面的方法。</li><li>接口中的方法都是抽象方法，所以接口里的方法不能有方法体。</li><li>接口可以多继承接口。</li><li>实现接口的类，方法的访问权限不能比接口底。</li><li>接口的使用离不开多态度机制（接口+多态才能达到解耦合）</li></ol><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里是多态的一种表现</span></span><br><span class="line">        <span class="comment">//抽象类是不能够被实例化的</span></span><br><span class="line">        MyMath my = <span class="keyword">new</span> MyMathImpl();</span><br><span class="line">        my.sum(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyMath</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> PI = <span class="number">3.1415926</span>;</span><br><span class="line"><span class="comment">//  public static final double PI=3.1415936; 效果一样，可以省略不写 public static final    </span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">//  public abstract int sum(int a,int b); 效果与上面的一样 这里public abstract可以省略    </span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非抽象类实现了抽象类必须重写方法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyMathImpl</span> <span class="keyword">implements</span> <span class="title">MyMath</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line"><span class="comment">/*  这里的访问修饰符不能比抽象类方法的访问修饰符权限低 只能比它高  </span></span><br><span class="line"><span class="comment">    private int sum(int a,int b)&#123;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">    &#125;;</span></span><br><span class="line"><span class="comment">*/</span>    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> se </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 接口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>类与对象的关系</title>
+      <link href="2020/12/08/d1212574.html"/>
+      <url>2020/12/08/d1212574.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="什么是类？"><a href="#什么是类？" class="headerlink" title="什么是类？"></a>什么是类？</h1><p><code>类是一种抽象的数据类型，它是对某一类事物整体描述/定义，但是并不能代表每一个具体的事物</code></p><h1 id="什么是对象？"><a href="#什么是对象？" class="headerlink" title="什么是对象？"></a>什么是对象？</h1><p><code>对象是抽象概念的具体实例</code></p><h2 id="创建与初始化对象"><a href="#创建与初始化对象" class="headerlink" title="创建与初始化对象"></a>创建与初始化对象</h2><ul><li><code>使用new关键字创建对象</code></li><li>使用new关键字创建的时候，除了分配内存空间之外，还会给创建好的对象进行默认初始化以及对类中构造器的调用。</li><li>类中的构造器也被称为构造方法，是在进行创建对象的时候必须要调用的。并且构造器有以下两个特点  <ol><li>必须和类的名称相同</li><li>必须没有返回类型，也不能写void</li></ol></li></ul><p>重点：<code>类里面定义了有参构造器就必须定义一个无参构造器</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> se </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 类 </tag>
+            
+            <tag> 对象 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>抽象类</title>
       <link href="2020/12/07/3dbae4e.html"/>
       <url>2020/12/07/3dbae4e.html</url>
