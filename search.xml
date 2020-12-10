@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>二进制的原码、反码、补码</title>
+      <link href="2020/12/10/c3d59d66.html"/>
+      <url>2020/12/10/c3d59d66.html</url>
+      
+        <content type="html"><![CDATA[<ol><li>计算机在任何情况下都只能识别二进制</li><li>计算机在底层存储数据的时候，一律存储的是”二进制的补码形式”，计算机采用补码形式存储数据的原因是：补码形式效率最高</li><li>什么是补码？<br>二进制有：原码 反码 补码<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//对于一个正式来说：二进制原码、反码、补码是同一个，完全相同</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">对应的二进制原码：<span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000001</span></span><br><span class="line">对应的二进制反码：<span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000001</span></span><br><span class="line">对应的二进制补码：<span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000001</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对一个负数来说：二进制原码、反码、补码是什么关系呢？</span></span><br><span class="line"><span class="keyword">byte</span> i = -<span class="number">1</span>;</span><br><span class="line">对应的二进制原码： <span class="number">10000001</span></span><br><span class="line">对应的二进制反码(符号位不变，其他位取反)： <span class="number">11111110</span></span><br><span class="line">对应的二进制补码(反码+<span class="number">1</span>)： <span class="number">11111111</span></span><br></pre></td></tr></table></figure>问题：byte b = (byte)150；输出多少？？<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">byte</span> b = (<span class="keyword">byte</span>)<span class="number">150</span>;<span class="comment">//这里输出-106</span></span><br><span class="line"></span><br><span class="line">    <span class="number">128</span> <span class="number">64</span> <span class="number">32</span> <span class="number">16</span> <span class="number">8</span> <span class="number">4</span> <span class="number">2</span> <span class="number">0</span></span><br><span class="line">    <span class="number">1</span>   <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> （这里是<span class="number">128</span>，<span class="number">150</span>-<span class="number">128</span>=<span class="number">22</span>）</span><br><span class="line">    <span class="number">1</span>   <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> （<span class="number">16</span>+<span class="number">4</span>+<span class="number">2</span>=<span class="number">22</span>）</span><br><span class="line">    </span><br><span class="line"><span class="number">11001</span> <span class="number">0110</span> (最终结果这是一个二进制补码形式)</span><br><span class="line">二进制原码为：<span class="number">1110</span> <span class="number">1010</span></span><br><span class="line">二进制反码为：<span class="number">1001</span> <span class="number">0101</span></span><br><span class="line">二进制补码为：<span class="number">1001</span> <span class="number">0110</span></span><br><span class="line">其中符号位是<span class="number">1</span>所以是负数</span><br><span class="line"><span class="number">0</span>+<span class="number">2</span>+<span class="number">0</span>+<span class="number">8</span>+<span class="number">0</span>+<span class="number">32</span>+<span class="number">64</span>=-<span class="number">106</span></span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> se </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二进制 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>异常</title>
       <link href="2020/12/09/23a3bd72.html"/>
       <url>2020/12/09/23a3bd72.html</url>
