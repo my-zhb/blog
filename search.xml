@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>多种数据类型混合运算</title>
+      <link href="2020/12/11/d57302f2.html"/>
+      <url>2020/12/11/d57302f2.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="byte、short、char混合运算"><a href="#byte、short、char混合运算" class="headerlink" title="byte、short、char混合运算"></a>byte、short、char混合运算</h1><p>结论:byte、char、short 做混合运算的时候，各自先转换成int再做运算。</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mian</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c1 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">byte</span> b = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//这里可以输出98，因为ascll表a的值是97</span></span><br><span class="line">        System.out.println(c1+b);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//short s = c1+b;这里编译出错，编译器不知道这个结果是什么。</span></span><br><span class="line">        </span><br><span class="line">       <span class="comment">// short d = (short)c1+b;这里也是编译出错，因为它先把c1转换成了short然后在和b相加，最终结果还是不知道。</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">short</span> f = (<span class="keyword">short</span>)(c1+b);<span class="comment">//这里可以正常编译，因为它是把c1+b进行相加后 在强转成short的</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> s = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//short d = s;这里编译出错，因为s的值要运行时才知道，而这里还没运行 编译器不知道，直接出错。</span></span><br><span class="line">        <span class="keyword">short</span> d = <span class="number">1</span>;<span class="comment">//这里正常，因为编译器知道这个值。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="多种数据类型混合运算-整数型"><a href="#多种数据类型混合运算-整数型" class="headerlink" title="多种数据类型混合运算(整数型)"></a>多种数据类型混合运算(整数型)</h1><p>结论：多种数据类型做混合运算的时候，最终结果是最大容量的类型<br>注意：byte、char、short 除外，会各自先转换成int</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mian</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">long</span> a = <span class="number">10L</span>;</span><br><span class="line">        <span class="keyword">char</span> b = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">short</span> s = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">30</span>;</span><br><span class="line">        <span class="comment">//求和</span></span><br><span class="line">        System.out.println(a+b+s+i);</span><br><span class="line">        <span class="comment">//int d = a+b+s+i;//这里算出来是long类型，编译错误 不兼容类型：从long转换成int</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//以下程序执行结果是？</span></span><br><span class="line">        <span class="keyword">int</span> temp = <span class="number">10</span>/<span class="number">3</span>;<span class="comment">//结果为：3，因为int/int类型结果还是int类型，最终结果取整。</span></span><br><span class="line">        <span class="keyword">int</span> temp2 = <span class="number">1</span>/<span class="number">2</span>;<span class="comment">//结果为：0，因为int/int类型结果还是int类型，最终结果取整。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="浮点型混合运算-浮点型"><a href="#浮点型混合运算-浮点型" class="headerlink" title="浮点型混合运算(浮点型)"></a>浮点型混合运算(浮点型)</h1><ul><li>浮点型包括<ul><li>  float 4个字节 单精度</li><li>  double 8个字节 双精度</li></ul></li></ul><p>例如：<br>10.0/3 如果采用float来存储的话结果可能是：3.3333<br>10.0/3 如果采用double来存储的话结果可能是：3.33333333<br><code>注意：double不能用于财务方面的运算，会丢失精度，最好使用BigDecimal，BigDecimal属于引用类型</code></p><p>float和double存储数据的时候都是存储的近似值，因为在运算的时候有时候会出现无限循环的数据。</p><p><code>注意：任意一个浮点型数据的类型容量都比整数数据类型容量大。</code>  </p><p><code>注意：java中规定任何一个浮点型都会默认被当做double来处理，如果想让这个浮点数字面量被当做flota类型来处理，那么要在字面量后面加上F/f</code></p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> f = <span class="number">3.14</span>;<span class="comment">//编译出错，不兼容的类型，从double转成float</span></span><br><span class="line"><span class="comment">//第一种转换方法：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">3.14F</span>;(或者<span class="number">3.14f</span>)</span><br><span class="line"></span><br><span class="line">/第二种 强制转换，可能会丢失精度，谨慎使用</span><br><span class="line"><span class="keyword">float</span> c = (<span class="keyword">float</span>)<span class="number">3.14</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//分析这个程序，可以编译吗？</span></span><br><span class="line"><span class="comment">//错误：不兼容的类型，从double转成int</span></span><br><span class="line"><span class="comment">//原理：先将5转换成double类型，然后在做运算，结果是double，大容量无法直接赋值给小容量，需要强转！</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">10.0</span>/<span class="number">5</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> se </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>二进制的原码、反码、补码</title>
       <link href="2020/12/10/c3d59d66.html"/>
       <url>2020/12/10/c3d59d66.html</url>
@@ -22,7 +49,7 @@
       
         <tags>
             
-            <tag> 二进制 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -49,7 +76,7 @@
       
         <tags>
             
-            <tag> 异常 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -76,7 +103,7 @@
       
         <tags>
             
-            <tag> 内部类 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -103,7 +130,7 @@
       
         <tags>
             
-            <tag> 接口 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -130,9 +157,7 @@
       
         <tags>
             
-            <tag> 类 </tag>
-            
-            <tag> 对象 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -159,7 +184,7 @@
       
         <tags>
             
-            <tag> 抽象类 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -186,7 +211,7 @@
       
         <tags>
             
-            <tag> static </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -213,11 +238,7 @@
       
         <tags>
             
-            <tag> 封装 </tag>
-            
-            <tag> 继承 </tag>
-            
-            <tag> 多态 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -244,9 +265,7 @@
       
         <tags>
             
-            <tag> 面向对象 </tag>
-            
-            <tag> 面向过程 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -273,7 +292,7 @@
       
         <tags>
             
-            <tag> 数组 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -300,7 +319,7 @@
       
         <tags>
             
-            <tag> 数组 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -327,7 +346,7 @@
       
         <tags>
             
-            <tag> 方法 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -354,9 +373,7 @@
       
         <tags>
             
-            <tag> 变量 </tag>
-            
-            <tag> 常量 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -383,7 +400,7 @@
       
         <tags>
             
-            <tag> 运算符 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -410,7 +427,7 @@
       
         <tags>
             
-            <tag> 数据类型 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
