@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>String、StringBuffer、StringBuilder区别</title>
+      <link href="2020/12/13/88b1c03b.html"/>
+      <url>2020/12/13/88b1c03b.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">思考：</span><br><span class="line">我们在实际的开发中，如果需要进行字符串的频繁拼接，会有什么问题？  </span><br><span class="line">因为java中的字符串是不可变的，每一次拼接都会产生新字符串。</span><br><span class="line">这样会占用大量的方法区内存，造成内存空间浪费。</span><br><span class="line">例如：</span><br><span class="line">    String s &#x3D; &quot;abc&quot;;</span><br><span class="line">    s +&#x3D; &quot;hello&quot;;</span><br><span class="line">    就以上两行代码，就导致在方法区字符串常量池当中创建了3个对象：</span><br><span class="line">    “abc”  &quot;hello&quot; &quot;abchello&quot;</span><br><span class="line"></span><br><span class="line">所以在大量的字符串拼接中，我们可以采用JDK自带的：</span><br><span class="line">    java.long.StringBuffer</span><br><span class="line">    java.long.StringBuilder</span><br></pre></td></tr></table></figure><h1 id="String、StringBuffer、StringBuilder"><a href="#String、StringBuffer、StringBuilder" class="headerlink" title="String、StringBuffer、StringBuilder"></a>String、StringBuffer、StringBuilder</h1><ol><li>StringBuffer、StringBuilder底层实际上是一个byte[]数组，往StringBuffer、StringBuilder中放字符串，实际上是放在byte数组当中的</li><li>StringBuffer、StringBuilder的初始容量是16。</li><li>StringBuffer、StringBuilder调用append()方法进行追加，如果容量不够，会自动扩容。底层实现原理通过System.arraycopy()方法进行扩容处理。</li><li>String的底层也是byte[]数组只不过是final修饰过的，所以不能改变。</li><li>如何优化StringBuffer、StringBuilder的性能？<br> <code>在创建StringBuffer、StringBuilder的时候尽可能的给定一个合适的初始容量，最好减少底层数组的扩容次数。</code></li></ol><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol><li>String、StringBuffer、StringBuilder的区别？<ul><li>  StringBuffer中所有方法都有：synchronized关键字修饰，表示线程安全，在多线程下是安全的，但是效率较低，长度可变。</li><li>  StringBuilder没有synchronized关键字修饰，表示不线程安全，在多线程下是不安全的,但是效率高，长度可变。</li><li>  String是不可变的，因为String的底层也是byte[]数组只不过是final修饰过的，所以不能改变。</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> se </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>String类</title>
       <link href="2020/12/12/5cf35ca9.html"/>
       <url>2020/12/12/5cf35ca9.html</url>
